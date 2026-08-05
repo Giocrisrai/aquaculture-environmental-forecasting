@@ -1,38 +1,72 @@
-# Máster Universitario en Inteligencia Artificial	
-## Prototipo	 experimental	 de	 IA	para	modelos	biogeoquímicos	e	Hidrodinámicos	oceanográficos	 en	 centros	 de	cultivo	 para	 predicción	 de	variables	e	impacto	ambiental.
+# IA para predicción ambiental en centros de cultivo acuícola
 
-### Resumen
+**Prototipo experimental de IA para modelos biogeoquímicos e hidrodinámicos oceanográficos en centros de cultivo, para la predicción de variables e impacto ambiental.**
 
-Este trabajo desarrolla la interacción de algoritmos de inteligencia artificial con modelos 
-oceanográficos. Para ello se utilizo un piloto experimental, para la predicción de las series 
-temporales de  diferentes  variables  que  pueden  generar  impactos  ambientales  en  el 
-ecosistema marítimo. Fue necesario apoyarse en el estudio de línea base oceanográfico, para 
-obtener datos  al  sur  de  Chile y  generar  el  estudio en una  concesión  marítima. El 
-procesamiento de los datos provenientes del modelo Oceanográfico CROCO-OCEAN, se 
-llevo a cabo mediante una transformación de las series temporales provenientes del formato 
-NetCDF a CSV, permitiendo una mejor manipulación de los datos. Los resultados obtenidos 
-muestran una comparación del rendimiento de diferentes redes neuronales: densas (DNN), 
-convolucionales (CNN) y recurrentes (RNN), lo que permitió determinar cual método obtiene 
-mejores métricas en problemáticas de series temporales, con la finalidad de poder monitorear 
-y predecir las variables que afectan en el centro de cultivo.
+Trabajo Fin de Máster — Máster Universitario en Inteligencia Artificial (UNIR) · Giocrisrai Godoy Bonillo
 
-Palabras Clave: Aprendizaje Profundo, Series Temporales, Redes Neuronales Recurrentes, 
-Modelo Oceanográfico, Centro de Cultivo de Salmones.
+[![Python](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![Domain](https://img.shields.io/badge/dominio-acuicultura%20%2F%20oceanograf%C3%ADa-0a6a79?style=flat-square)](#)
 
-### Abstract
+> **Por qué este trabajo importa hoy.** La salmonicultura chilena está obligada a entregar Información Ambiental (INFA) periódica a Sernapesca sobre la condición de la columna de agua y el sedimento de cada concesión. Este prototipo aborda exactamente ese problema: **predecir, a partir de un modelo oceanográfico, las variables ambientales que determinan el riesgo de un centro de cultivo** — antes de que ocurra el evento adverso. Es la base metodológica de una línea de monitoreo ambiental predictivo para acuicultura en aguas reguladas.
 
-This work develops the interaction of artificial intelligence algorithms with oceanographic 
-models. For this, an experimental pilot was used to predict the time series of different variables 
-that can generate environmental impacts on the maritime ecosystem. It was necessary to rely 
-on the oceanographic baseline study to obtain data in southern Chile and generate the study 
-in  a  maritime  concession.  The  processing  of  the  data  from  the  CROCO-OCEAN 
-Oceanographic model was carried out through a transformation of the time series from the 
-NetCDF to CSV format, allowing a better manipulation of the data. The results obtained show 
-a comparison of the performance of different neural networks: dense (DNN), convolutional 
-(CNN) and recurrent (RNN), which allowed determining which method obtains better metrics 
-in time series problems. In order to be able to monitor and predict the variables that affect the 
-cultivation center.
+---
 
-Keywords: Deep Learning, Time Series, Recurrent Neural Networks, Oceanographic Model, 
-Salmon Culture Center.
+## Problema
 
+Un centro de cultivo de salmones opera bajo condiciones oceanográficas que cambian en el tiempo (temperatura, salinidad, corrientes, oxígeno, variables biogeoquímicas). Cuando esas variables cruzan ciertos umbrales, se generan **impactos ambientales** y **riesgos operacionales** (mortalidad, prealerta, pérdida de la resolución de calificación ambiental). Anticiparlas con horas o días de ventaja tiene valor económico y regulatorio directo.
+
+Este trabajo desarrolla la **interacción entre algoritmos de aprendizaje profundo y un modelo oceanográfico de alta resolución** para predecir las series temporales de esas variables en una concesión marítima real.
+
+## Zona de estudio y datos
+
+- **Sitio:** una concesión marítima en el extremo sur de Chile (**Islas Clarence**, región de Magallanes), con estudio de línea base oceanográfico real.
+- **Fuente:** salidas del modelo oceanográfico **CROCO-OCEAN** (Coastal and Regional Ocean COmmunity model) en formato **NetCDF**, para campañas de **verano** e **invierno**, más **batimetría** del sector y la **posición de la jaula** del centro de cultivo.
+- **Ingeniería de datos:** transformación de las salidas NetCDF (mallas espacio-temporales por capas de profundidad) a **series temporales en CSV** ancladas al punto de la concesión, para su manipulación y modelado.
+
+## Enfoque
+
+Comparación sistemática de tres familias de redes neuronales sobre el problema de predicción de series temporales:
+
+| Arquitectura | Rol en el estudio |
+|---|---|
+| **DNN** (densa) | Línea base sin estructura temporal explícita |
+| **CNN** (convolucional) | Captura de patrones locales en la ventana temporal |
+| **RNN** (recurrente) | Modelado de dependencia temporal secuencial |
+
+El objetivo es **determinar qué familia obtiene mejores métricas** para monitorear y predecir las variables que afectan al centro de cultivo. Los resultados completos, la metodología y las métricas comparadas están en la memoria depositada.
+
+## Contenido del repositorio
+
+| Archivo | Descripción |
+|---|---|
+| `Transformacion_data_croco_tfm.ipynb` | Ingeniería de datos: lectura de NetCDF (CROCO-OCEAN), extracción por capas y construcción de la serie temporal en CSV. |
+| `analisis_de_datos_proyecto_croco_inteligencia_artificial.ipynb` | Exploración de datos, batimetría, máscara del dominio y modelado comparativo (DNN/CNN/RNN). |
+| `Datos_serie_temporal_TFM.ipynb` | Serie temporal consolidada y experimentos. |
+| `csv_croco_his3feb_mar/` | Series temporales derivadas (CSV) de las campañas. |
+| `TFM_Giocrisrai_Godoy_Bonillo_Deposito_extraordinaria.pdf` | Memoria completa del TFM (metodología, resultados, discusión). |
+
+## Stack
+
+`Python` · `TensorFlow / Keras` · `xarray / netCDF4` · `NumPy` · `Pandas` · `Matplotlib`
+
+## De la investigación a la aplicación
+
+Este prototipo es la semilla metodológica de un producto de **inteligencia ambiental para acuicultura**: ingesta de modelos oceanográficos y sensores, predicción de variables de riesgo, y prealerta temprana alineada con la reportería ambiental exigida por el regulador. El puente entre el modelo físico (CROCO-OCEAN), el dato del centro y el aprendizaje profundo es exactamente donde la IA agrega valor en este dominio.
+
+## Cita
+
+```
+Godoy Bonillo, G. (2021). Prototipo experimental de IA para modelos biogeoquímicos
+e hidrodinámicos oceanográficos en centros de cultivo para la predicción de variables
+e impacto ambiental. Trabajo Fin de Máster, Máster Universitario en Inteligencia
+Artificial, Universidad Internacional de La Rioja (UNIR).
+```
+
+## Licencia
+
+Ver [`LICENSE`](LICENSE). Los datos oceanográficos derivados se incluyen con fines académicos y de reproducibilidad.
+
+---
+
+*Autor: **Giocrisrai Godoy Bonillo** — AI Engineer. Ingeniería de IA para industrias reguladas (acuicultura, medio ambiente marino, manufactura). [github.com/Giocrisrai](https://github.com/Giocrisrai) · [giocrisrai.com](https://giocrisrai.com)*
