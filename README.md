@@ -1,5 +1,7 @@
 # IA para predicción ambiental en centros de cultivo acuícola
 
+> **English summary.** MSc in Artificial Intelligence thesis (UNIR). Deep learning on the outputs of the CROCO-OCEAN high-resolution ocean model to predict time series of environmental variables at a real salmon-farming concession in southern Chile. Includes the NetCDF-to-time-series data engineering and a systematic comparison of DNN, CNN and RNN models. The rest of this document is in Spanish.
+
 **Prototipo experimental de IA para modelos biogeoquímicos e hidrodinámicos oceanográficos en centros de cultivo, para la predicción de variables e impacto ambiental.**
 
 Trabajo Fin de Máster — Máster Universitario en Inteligencia Artificial (UNIR) · Giocrisrai Godoy Bonillo
